@@ -46,6 +46,14 @@ extern "C" {
         ui_method: *mut UI_METHOD,
         callback_data: *mut c_void,
     ) -> c_int;
+
+    pub fn UI_set_default_method(meth: *const UI_METHOD);
+    pub fn UI_get_default_method() -> *const UI_METHOD;
+    pub fn UI_get_method(ui: *mut UI) -> *const UI_METHOD;
+    pub fn UI_set_method(ui: *mut UI, meth: *const UI_METHOD) -> *const UI_METHOD;
+
+    pub fn UI_OpenSSL() -> *mut UI_METHOD;
+    pub fn UI_null() -> *const UI_METHOD;
 }
 
 type UI = c_int;
