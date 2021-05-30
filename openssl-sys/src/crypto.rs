@@ -132,5 +132,5 @@ extern "C" {
 #[repr(C)]
 pub struct CRYPTO_EX_DATA {
     sk: *mut c_void,
-    dummy: c_int
+    dummy: c_int,
 }
