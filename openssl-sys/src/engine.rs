@@ -48,6 +48,9 @@ extern "C" {
     ) -> c_int;
 }
 
+type UI = c_int;
+type UI_STRING = c_int;
+
 #[repr(C)]
 pub struct UI_METHOD {
     name: *const c_char,
@@ -65,23 +68,6 @@ pub struct UI_METHOD {
 
 const UI_FLAG_REDOABLE: c_int = 0x0001;
 const UI_FLAG_PRINT_ERRORS: c_int = 0x0100;
-
-#[repr(C)]
-pub struct UI {
-    meth: *const UI_METHOD,
-    strings: *mut c_void,
-    user_data: *mut c_void,
-    ex_data: CRYPTO_EX_DATA,
-    flags: c_int,
-}
-
-#[repr(C)]
-pub struct UI_STRING {
-    string_type: UI_string_types,
-    out_string: *const c_char,
-    input_flags: c_int,
-    result_buf: *mut c_char,
-}
 
 #[repr(C)]
 pub enum UI_string_types {
