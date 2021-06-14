@@ -1156,7 +1156,7 @@ extern "C" {
             ssl: *mut SSL,
             x509: *mut *mut X509,
             pkey: *mut *mut EVP_PKEY,
-        ),
+        ) -> c_int,
     );
 
     pub fn SSL_CTX_set_default_verify_paths(ctx: *mut SSL_CTX) -> c_int;

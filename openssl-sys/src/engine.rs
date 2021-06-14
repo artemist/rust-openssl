@@ -42,7 +42,7 @@ extern "C" {
         ca_dn: *mut stack_st_X509_NAME,
         pcert: *mut *mut X509,
         ppkey: *mut *mut EVP_PKEY,
-        pother: *mut *mut c_void,
+        pother: *mut *mut stack_st_X509,
         ui_method: *mut UI_METHOD,
         callback_data: *mut c_void,
     ) -> c_int;
@@ -59,20 +59,7 @@ extern "C" {
 type UI = c_int;
 type UI_STRING = c_int;
 
-#[repr(C)]
-pub struct UI_METHOD {
-    name: *const c_char,
-    ui_open_session: extern "C" fn(ui: *mut UI) -> c_int,
-    ui_write_string: extern "C" fn(ui: *mut UI, uis: *mut UI_STRING) -> c_int,
-    ui_flush: extern "C" fn(ui: *mut UI) -> c_int,
-    ui_read_string: extern "C" fn(ui: *mut UI, uis: *mut UI_STRING) -> c_int,
-    ui_close_session: extern "C" fn(ui: *mut UI) -> c_int,
-    ui_construct_prompt: extern "C" fn(
-        ui: *mut UI,
-        object_desc: *const c_char,
-        object_name: *const c_char,
-    ) -> *mut c_char,
-}
+pub enum UI_METHOD {}
 
 const UI_FLAG_REDOABLE: c_int = 0x0001;
 const UI_FLAG_PRINT_ERRORS: c_int = 0x0100;
